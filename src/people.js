@@ -14,19 +14,17 @@ const savePeople = async (value) => {
       JSON.stringify(parsedData),
       'utf8'
     );
-
-    console.log('Data has been added');
+    console.log('Data has been added successfully');
   } catch (error) {
     console.error(error);
   }
 };
 
-const getPeople = async () => {
+const getAllPeopleByKey = async (key) => {
   try {
     const data = await fs.readFile('./data/result.json', 'utf8');
-    //get only name
-    const name = JSON.parse(data).map((item) => item.name);
-    return name;
+    const getKeys = JSON.parse(data).map((item) => item[key]);
+    return getKeys;
   } catch (error) {
     console.error(error);
     return [];
@@ -42,11 +40,16 @@ const getAllPeople = async () => {
     return [];
   }
 };
-const getPeopleById = async (id) => {
-  const data = await getAllPeople();
-  const people = data.find((item) => item.id === id);
 
-  console.log(people);
+const getPeopleById = async (id) => {
+  try {
+    const data = await getAllPeople();
+    const people = data.find((item) => item.id === id);
+    return people;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
 
-export { savePeople, getPeople, initialPeople, getPeopleById };
+export { savePeople, getAllPeopleByKey, initialPeople, getPeopleById };

@@ -3,7 +3,7 @@ import { volumeKubus, luasPermukaanKubus } from './src/kubus.js';
 import { volumePrisma, luasPermukaanPrisma } from './src/prisma.js';
 import {
   savePeople,
-  getPeople,
+  getAllPeopleByKey,
   initialPeople,
   getPeopleById,
 } from './src/people.js';
@@ -86,5 +86,5 @@ savePeople({
   username: 'Moriah.Stanton 2',
   email: 'Rey.Padberg@karina.biz',
 });
-console.log(await getPeople());
-getPeopleById(1);
+console.log(await getAllPeopleByKey('name'));
+console.log(await getPeopleById(11));
