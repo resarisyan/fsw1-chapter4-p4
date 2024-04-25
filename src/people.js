@@ -24,17 +24,29 @@ const savePeople = async (value) => {
 const getPeople = async () => {
   try {
     const data = await fs.readFile('./data/result.json', 'utf8');
-    return JSON.parse(data);
+    //get only name
+    const name = JSON.parse(data).map((item) => item.name);
+    return name;
   } catch (error) {
     console.error(error);
     return [];
   }
 };
 
+const getAllPeople = async () => {
+  try {
+    const data = await fs.readFile('./data/result.json', 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
 const getPeopleById = async (id) => {
-  const data = await getPeople();
+  const data = await getAllPeople();
   const people = data.find((item) => item.id === id);
-  console.log(Object.values(people));
+
+  console.log(people);
 };
 
 export { savePeople, getPeople, initialPeople, getPeopleById };

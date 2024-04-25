@@ -86,5 +86,5 @@ savePeople({
   username: 'Moriah.Stanton 2',
   email: 'Rey.Padberg@karina.biz',
 });
-// console.log(getPeople());
+console.log(await getPeople());
 getPeopleById(1);
